@@ -1,4 +1,7 @@
-"""Опыт 1: одна и та же фраза на русском и английском через токенайзер.
+"""Опыт 1: одна и та же фраза на разных языках/письменностях через токенайзер.
+
+Языки: английский (база), русский (кириллица), русский латиницей (транслит),
+казахский (кириллица).
 
 Запуск:  .venv/bin/python exp01_tokenization_ru_vs_en.py
 Результат: results/exp01_tokenization_ru_vs_en.md (+ .json)
@@ -8,17 +11,29 @@ from pathlib import Path
 
 import tiktoken
 
-# Пары «одна и та же мысль» на двух языках
+# Порядок важен: первый язык — база для сравнения
+LANGS = {
+    "en": "Английский",
+    "ru": "Русский (кириллица)",
+    "ru_lat": "Русский латиницей",
+    "kk": "Казахский (кириллица)",
+}
+
+# Одна и та же мысль на всех языках
 PHRASES = [
     {
         "name": "main",
         "en": "Artificial intelligence is changing the world very fast.",
         "ru": "Искусственный интеллект очень быстро меняет мир.",
+        "ru_lat": "Iskusstvennyj intellekt ochen bystro menyaet mir.",
+        "kk": "Жасанды интеллект әлемді өте тез өзгертуде.",
     },
     {
         "name": "short",
         "en": "Hello, world!",
         "ru": "Привет, мир!",
+        "ru_lat": "Privet, mir!",
+        "kk": "Сәлем, әлем!",
     },
     {
         "name": "long",
@@ -29,6 +44,14 @@ PHRASES = [
         "ru": (
             "Большие языковые модели разбивают текст на токены, и количество "
             "токенов влияет и на цену, и на размер контекстного окна."
+        ),
+        "ru_lat": (
+            "Bolshie yazykovye modeli razbivayut tekst na tokeny, i kolichestvo "
+            "tokenov vliyaet i na tsenu, i na razmer kontekstnogo okna."
+        ),
+        "kk": (
+            "Үлкен тілдік модельдер мәтінді токендерге бөледі, ал токендер "
+            "саны бағаға да, контекстік терезенің өлшеміне де әсер етеді."
         ),
     },
 ]
@@ -48,6 +71,7 @@ def show(enc, token_id):
 def analyze(enc, text):
     ids = enc.encode(text)
     return {
+        "text": text,
         "tokens": len(ids),
         "chars": len(text),
         "bytes_utf8": len(text.encode("utf-8")),
@@ -57,22 +81,18 @@ def analyze(enc, text):
 
 
 def main():
+    base = next(iter(LANGS))
     results = []
     for enc_name in ENCODINGS:
         enc = tiktoken.get_encoding(enc_name)
         for p in PHRASES:
-            en, ru = analyze(enc, p["en"]), analyze(enc, p["ru"])
-            results.append(
-                {
-                    "encoding": enc_name,
-                    "phrase": p["name"],
-                    "text_en": p["en"],
-                    "text_ru": p["ru"],
-                    "en": en,
-                    "ru": ru,
-                    "ratio_ru_to_en": round(ru["tokens"] / en["tokens"], 2),
-                }
-            )
+            row = {"encoding": enc_name, "phrase": p["name"], "langs": {}}
+            for lang in LANGS:
+                row["langs"][lang] = analyze(enc, p[lang])
+            b = row["langs"][base]["tokens"]
+            for lang in LANGS:
+                row["langs"][lang]["ratio_to_en"] = round(row["langs"][lang]["tokens"] / b, 2)
+            results.append(row)
 
     out = Path("results")
     out.mkdir(exist_ok=True)
@@ -80,28 +100,38 @@ def main():
         json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    md = ["# Опыт 1. Токенизация: русский vs английский\n"]
+    md = ["# Опыт 1. Токенизация: одна фраза на разных языках\n"]
     md.append(
-        "Одна и та же мысль на двух языках, токенайзеры из `tiktoken` "
-        "(`cl100k_base` — GPT-4, `o200k_base` — GPT-4o).\n"
+        "Одна и та же мысль на английском, русском (кириллица), русском латиницей "
+        "(транслит) и казахском. Токенайзеры из `tiktoken`: `cl100k_base` — GPT-4, "
+        "`o200k_base` — GPT-4o. В скобках — отношение к английскому.\n"
     )
-    md.append("## Сводка\n")
-    md.append("| Токенайзер | Фраза | EN токенов | RU токенов | RU/EN | EN симв/ток | RU симв/ток |")
-    md.append("|---|---|---:|---:|---:|---:|---:|")
+    md.append("## Сводка: число токенов\n")
+    head = "| Токенайзер | Фраза | " + " | ".join(LANGS.values()) + " |"
+    md.append(head)
+    md.append("|---|---|" + "---:|" * len(LANGS))
     for r in results:
-        md.append(
-            f"| {r['encoding']} | {r['phrase']} | {r['en']['tokens']} | "
-            f"{r['ru']['tokens']} | {r['ratio_ru_to_en']}x | "
-            f"{r['en']['chars_per_token']} | {r['ru']['chars_per_token']} |"
-        )
+        cells = []
+        for lang in LANGS:
+            d = r["langs"][lang]
+            cells.append(f"{d['tokens']}" if lang == base else f"{d['tokens']} ({d['ratio_to_en']}x)")
+        md.append(f"| {r['encoding']} | {r['phrase']} | " + " | ".join(cells) + " |")
+
+    md.append("\n## Сводка: символов на токен\n")
+    md.append(head)
+    md.append("|---|---|" + "---:|" * len(LANGS))
+    for r in results:
+        cells = [str(r["langs"][lang]["chars_per_token"]) for lang in LANGS]
+        md.append(f"| {r['encoding']} | {r['phrase']} | " + " | ".join(cells) + " |")
+
     md.append("\n## Разбивка по токенам\n")
     for r in results:
         md.append(f"### {r['encoding']} / {r['phrase']}\n")
-        for lang in ("en", "ru"):
-            d = r[lang]
+        for lang, title in LANGS.items():
+            d = r["langs"][lang]
             pieces = " ".join(f"`{s}`" if s.strip() else f"`{s!r}`" for s in d["pieces"])
             md.append(
-                f"**{lang.upper()}** — «{r['text_' + lang]}»  \n"
+                f"**{title}** — «{d['text']}»  \n"
                 f"{d['tokens']} токенов, {d['chars']} символов, {d['bytes_utf8']} байт\n\n"
                 f"{pieces}\n"
             )
@@ -109,10 +139,11 @@ def main():
 
     # Краткий вывод в консоль
     for r in results:
-        print(
-            f"{r['encoding']:12} {r['phrase']:6} EN={r['en']['tokens']:3}  "
-            f"RU={r['ru']['tokens']:3}  RU/EN={r['ratio_ru_to_en']}x"
+        line = "  ".join(
+            f"{lang}={r['langs'][lang]['tokens']:3}({r['langs'][lang]['ratio_to_en']}x)"
+            for lang in LANGS
         )
+        print(f"{r['encoding']:12} {r['phrase']:6} {line}")
 
 
 if __name__ == "__main__":
