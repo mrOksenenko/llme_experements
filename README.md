@@ -64,3 +64,7 @@ python3 -m venv .venv
 - Qwen3 и Gemma 3 режут числа по цифрам (54 и 53 токена против 34 у GPT-4o и Llama 4 на строке с номерами).
 - Claude: токенайзеры Claude 3+ и 5 закрыты. Без ключа удалось взять только публичный токенайзер Claude 1/2 (словарь 65k, `Xenova/claude-tokenizer`): он на уровне GPT-4 или хуже (русский 2.22x, казахский 3.17x), но это старое поколение и для актуальных моделей лишь грубый ориентир.
   Точные числа для Claude 5.x даёт только API `count_tokens`: `ANTHROPIC_API_KEY=... .venv/bin/python exp03_tokenizers_multi.py`.
+
+### Что измеряли другие
+
+Сводка чужих тестов токенайзеров (Claude vs GPT, русский, казахский) с пометками, что проверено: [results/related_work_tokenizers.md](results/related_work_tokenizers.md).
