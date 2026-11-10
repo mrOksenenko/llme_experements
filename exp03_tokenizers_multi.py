@@ -39,11 +39,28 @@ TOKENIZERS = [
 
 # Модели Claude для count_tokens (у разных поколений токенайзер может отличаться)
 ANTHROPIC_MODELS = [
-    ("claude-fable-5-1", "Claude Fable 5.1"),
+    ("claude-fable-5-2", "Claude Fable 5.2"),
     ("claude-opus-5-5", "Claude Opus 5.5"),
     ("claude-sonnet-5-5", "Claude Sonnet 5.5"),
     ("claude-haiku-5-5", "Claude Haiku 5.5"),
+    ("claude-sonnet-4-6", "Claude Sonnet 4.6"),  # прежний токенайзер, до Opus 4.7
 ]
+
+
+def load_dotenv(path=".env"):
+    """Минимальная загрузка .env (без зависимостей). Уже заданные переменные не трогаем,
+    пустые значения пропускаем. Файл .env в .gitignore: ключ в репозиторий не попадает."""
+    p = Path(path)
+    if not p.exists():
+        return
+    for line in p.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        k, v = line.split("=", 1)
+        k, v = k.strip(), v.strip().strip('"').strip("'")
+        if v and k not in os.environ:
+            os.environ[k] = v
 
 
 def hf_counter(repo):
@@ -100,6 +117,7 @@ def anthropic_counter(client, model):
 
 
 def build_counters():
+    load_dotenv()
     counters, notes = {}, []
     for kind, ident, label in TOKENIZERS:
         try:
