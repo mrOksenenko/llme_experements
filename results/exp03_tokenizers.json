@@ -4,7 +4,8 @@
     "GPT-4o (o200k)",
     "Qwen3",
     "Gemma 3",
-    "Llama 4"
+    "Llama 4",
+    "Claude 1/2 (legacy)"
   ],
   "notes": [
     "Anthropic Claude: пропущено — не задан ANTHROPIC_API_KEY"
@@ -54,6 +55,15 @@
       "tr": 1.24,
       "de": 1.12,
       "zh": 0.89
+    },
+    "Claude 1/2 (legacy)": {
+      "en": 1.0,
+      "ru": 2.22,
+      "ru_lat": 1.76,
+      "kk": 3.17,
+      "tr": 2.05,
+      "de": 1.57,
+      "zh": 1.49
     }
   },
   "total_tokens": {
@@ -101,6 +111,15 @@
       "tr": 140,
       "de": 138,
       "zh": 103
+    },
+    "Claude 1/2 (legacy)": {
+      "en": 119,
+      "ru": 271,
+      "ru_lat": 222,
+      "kk": 384,
+      "tr": 232,
+      "de": 186,
+      "zh": 180
     }
   },
   "parallel": {
@@ -149,6 +168,15 @@
         "tr": 6,
         "de": 4,
         "zh": 5
+      },
+      "Claude 1/2 (legacy)": {
+        "en": 4,
+        "ru": 8,
+        "ru_lat": 5,
+        "kk": 10,
+        "tr": 9,
+        "de": 6,
+        "zh": 7
       }
     },
     "ai": {
@@ -196,6 +224,15 @@
         "tr": 11,
         "de": 10,
         "zh": 7
+      },
+      "Claude 1/2 (legacy)": {
+        "en": 10,
+        "ru": 26,
+        "ru_lat": 19,
+        "kk": 33,
+        "tr": 26,
+        "de": 17,
+        "zh": 14
       }
     },
     "weather": {
@@ -243,6 +280,15 @@
         "tr": 19,
         "de": 18,
         "zh": 11
+      },
+      "Claude 1/2 (legacy)": {
+        "en": 18,
+        "ru": 33,
+        "ru_lat": 25,
+        "kk": 52,
+        "tr": 32,
+        "de": 28,
+        "zh": 20
       }
     },
     "question": {
@@ -290,6 +336,15 @@
         "tr": 16,
         "de": 15,
         "zh": 10
+      },
+      "Claude 1/2 (legacy)": {
+        "en": 13,
+        "ru": 26,
+        "ru_lat": 24,
+        "kk": 41,
+        "tr": 24,
+        "de": 20,
+        "zh": 21
       }
     },
     "tokens_long": {
@@ -337,6 +392,15 @@
         "tr": 27,
         "de": 27,
         "zh": 22
+      },
+      "Claude 1/2 (legacy)": {
+        "en": 22,
+        "ru": 56,
+        "ru_lat": 49,
+        "kk": 92,
+        "tr": 42,
+        "de": 36,
+        "zh": 30
       }
     },
     "paragraph": {
@@ -384,6 +448,15 @@
         "tr": 61,
         "de": 64,
         "zh": 48
+      },
+      "Claude 1/2 (legacy)": {
+        "en": 52,
+        "ru": 122,
+        "ru_lat": 100,
+        "kk": 156,
+        "tr": 99,
+        "de": 79,
+        "zh": 88
       }
     }
   },
@@ -393,35 +466,40 @@
       "GPT-4o (o200k)": 34,
       "Qwen3": 54,
       "Gemma 3": 53,
-      "Llama 4": 34
+      "Llama 4": 34,
+      "Claude 1/2 (legacy)": 32
     },
     "python": {
       "GPT-4 (cl100k)": 38,
       "GPT-4o (o200k)": 38,
       "Qwen3": 39,
       "Gemma 3": 45,
-      "Llama 4": 38
+      "Llama 4": 38,
+      "Claude 1/2 (legacy)": 41
     },
     "json": {
       "GPT-4 (cl100k)": 31,
       "GPT-4o (o200k)": 31,
       "Qwen3": 32,
       "Gemma 3": 32,
-      "Llama 4": 31
+      "Llama 4": 31,
+      "Claude 1/2 (legacy)": 30
     },
     "url": {
       "GPT-4 (cl100k)": 29,
       "GPT-4o (o200k)": 30,
       "Qwen3": 31,
       "Gemma 3": 37,
-      "Llama 4": 29
+      "Llama 4": 29,
+      "Claude 1/2 (legacy)": 36
     },
     "emoji": {
       "GPT-4 (cl100k)": 23,
       "GPT-4o (o200k)": 18,
       "Qwen3": 17,
       "Gemma 3": 15,
-      "Llama 4": 20
+      "Llama 4": 20,
+      "Claude 1/2 (legacy)": 21
     }
   }
 }

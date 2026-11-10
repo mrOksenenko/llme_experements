@@ -32,6 +32,9 @@ TOKENIZERS = [
     ("hf", "Qwen/Qwen3-8B", "Qwen3"),
     ("hf", "unsloth/gemma-3-4b-it", "Gemma 3"),  # зеркало токенайзера google/gemma-3
     ("hf", "unsloth/Llama-4-Scout-17B-16E-Instruct", "Llama 4"),  # зеркало meta-llama
+    # Публичный токенайзер Claude 1/2 (словарь 65k). НЕ токенайзер Claude 3+/5:
+    # у современных моделей Anthropic токенайзер закрыт, это лишь грубый ориентир.
+    ("hf", "Xenova/claude-tokenizer", "Claude 1/2 (legacy)"),
 ]
 
 # Модели Claude для count_tokens (у разных поколений токенайзер может отличаться)
@@ -172,8 +175,14 @@ def main():
         f"Корпус: {len(PARALLEL)} параллельных текстов на {len(langs)} языках/письменностях "
         f"и {len(NEUTRAL)} нейтральных (числа, код, JSON, URL, эмодзи). "
         "Токенайзеры: OpenAI (`tiktoken`), Qwen3, Gemma 3, Llama 4 (Hugging Face)"
-        + (", Claude (API `count_tokens`)." if any(n.startswith("Claude") for n in names) else ".")
+        + ", публичный токенайзер Claude 1/2 (legacy)"
+        + (", актуальные Claude (API `count_tokens`)." if any(n.startswith("Claude ") and "legacy" not in n for n in names) else ".")
         + "\n"
+    )
+    md.append(
+        "> **Про Claude 1/2 (legacy):** это старый публичный токенайзер (словарь 65k) из "
+        "ранних версий SDK Anthropic. Токенайзер Claude 3+ и 5 закрыт; цифры legacy "
+        "нужны как ориентир и могут заметно отличаться от текущих моделей.\n"
     )
     if notes:
         md.append("**Примечания:**\n")

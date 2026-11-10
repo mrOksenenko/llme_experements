@@ -9,6 +9,7 @@
 - **Qwen3** (10): `Art` `ificial` ` intelligence` ` is` ` changing` ` the` ` world` ` very` ` fast` `.`
 - **Gemma 3** (9): `Artificial` ` intelligence` ` is` ` changing` ` the` ` world` ` very` ` fast` `.`
 - **Llama 4** (9): `Artificial` ` intelligence` ` is` ` changing` ` the` ` world` ` very` ` fast` `.`
+- **Claude 1/2 (legacy)** (10): `Art` `ificial` ` intelligence` ` is` ` changing` ` the` ` world` ` very` ` fast` `.`
 
 ## Русский
 
@@ -19,6 +20,7 @@
 - **Qwen3** (13): `И` `с` `кус` `ственный` ` ин` `тел` `лект` ` очень` ` быстро` ` меня` `ет` ` мир` `.`
 - **Gemma 3** (11): `И` `скус` `ственный` ` интел` `лект` ` очень` ` быстро` ` меня` `ет` ` мир` `.`
 - **Llama 4** (10): `Иск` `ус` `ственный` ` интеллек` `т` ` очень` ` быстро` ` меняет` ` мир` `.`
+- **Claude 1/2 (legacy)** (26): `И` `с` `ку` `с` `ств` `ен` `ный` ` ин` `т` `ел` `л` `ект` ` о` `ч` `ень` ` бы` `ст` `р` `о` ` м` `еня` `ет` ` м` `и` `р` `.`
 
 ## Русский латиницей
 
@@ -29,6 +31,7 @@
 - **Qwen3** (18): `Is` `kus` `st` `ven` `ny` `j` ` int` `elle` `kt` ` o` `chen` ` by` `stro` ` men` `ya` `et` ` mir` `.`
 - **Gemma 3** (17): `I` `sk` `us` `stven` `nyj` ` int` `elle` `kt` ` o` `chen` ` by` `stro` ` men` `ya` `et` ` mir` `.`
 - **Llama 4** (18): `I` `sk` `usst` `ven` `ny` `j` ` int` `elle` `kt` ` o` `chen` ` by` `stro` ` men` `ya` `et` ` mir` `.`
+- **Claude 1/2 (legacy)** (19): `I` `sk` `us` `st` `ven` `ny` `j` ` int` `elle` `kt` ` o` `chen` ` by` `stro` ` men` `ya` `et` ` mir` `.`
 
 ## Қазақша (кириллица)
 
@@ -39,6 +42,7 @@
 - **Qwen3** (25): `Ж` `ас` `анд` `ы` ` ин` `тел` `лект` `' '` `ә` `лем` `д` `і` `' '` `ө` `те` ` т` `ез` `' '` `ө` `з` `г` `ерт` `уд` `е` `.`
 - **Gemma 3** (18): `Ж` `а` `сан` `ды` ` интел` `лект` ` ә` `лем` `ді` ` ө` `те` ` те` `з` ` өз` `гер` `ту` `де` `.`
 - **Llama 4** (17): `Ж` `асан` `ды` ` интеллек` `т` ` ә` `лем` `ді` ` ө` `те` ` те` `з` ` өз` `гер` `ту` `де` `.`
+- **Claude 1/2 (legacy)** (33): `�` `�` `ас` `ан` `д` `ы` ` ин` `т` `ел` `л` `ект` `' '` `�` `�` `лем` `д` `і` `' '` `�` `�` `те` ` т` `ез` `' '` `�` `�` `з` `г` `ер` `т` `уд` `е` `.`
 
 ## Türkçe
 
@@ -49,6 +53,7 @@
 - **Qwen3** (12): `Y` `ap` `ay` ` z` `eka` ` düny` `ayı` ` çok` ` hızlı` ` değiştir` `iyor` `.`
 - **Gemma 3** (11): `Y` `apay` ` z` `eka` ` düny` `ayı` ` çok` ` hızlı` ` değiştir` `iyor` `.`
 - **Llama 4** (11): `Yap` `ay` ` z` `eka` ` düny` `ayı` ` çok` ` hızlı` ` değiştir` `iyor` `.`
+- **Claude 1/2 (legacy)** (26): `Y` `ap` `ay` ` z` `ek` `a` ` d` `ü` `ny` `ay` `ı` ` ç` `ok` ` h` `ı` `zl` `ı` ` de` `ğ` `i` `ş` `ti` `ri` `y` `or` `.`
 
 ## Deutsch
 
@@ -59,6 +64,7 @@
 - **Qwen3** (15): `K` `ünst` `liche` ` Int` `ell` `igen` `z` ` ver` `änd` `ert` ` die` ` Welt` ` sehr` ` schnell` `.`
 - **Gemma 3** (11): `K` `ünst` `liche` ` Intelligen` `z` ` verändert` ` die` ` Welt` ` sehr` ` schnell` `.`
 - **Llama 4** (10): `K` `ünst` `liche` ` Intelligenz` ` verändert` ` die` ` Welt` ` sehr` ` schnell` `.`
+- **Claude 1/2 (legacy)** (17): `K` `ünst` `liche` ` Int` `ell` `igen` `z` ` ver` `änd` `ert` ` die` ` W` `elt` ` sehr` ` schn` `ell` `.`
 
 ## 中文
 
@@ -69,3 +75,4 @@
 - **Qwen3** (7): `人工智能` `正在` `飞` `速` `改变` `世界` `。`
 - **Gemma 3** (7): `人工智能` `正在` `飞` `速` `改变` `世界` `。`
 - **Llama 4** (7): `人工智能` `正在` `飞` `速` `改变` `世界` `。`
+- **Claude 1/2 (legacy)** (14): `人` `工` `�` `�` `能` `正在` `飞` `速` `改` `变` `�` `�` `界` `。`
