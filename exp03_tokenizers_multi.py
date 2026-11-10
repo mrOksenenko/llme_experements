@@ -209,6 +209,23 @@ def main():
         md.append("")
     md.append("Исходные тексты: [corpus.py](../corpus.py).\n")
 
+    md.append("## 3.1. Китайский подробнее: токенов на символ\n")
+    md.append(
+        "В китайском нет пробелов и слов в нашем понимании, поэтому считаем токены на символ "
+        "(иероглифы и знаки препинания). Меньше — эффективнее; 1.00 значит «один токен на символ». "
+        "Последний столбец — отношение к английскому (среднее).\n"
+    )
+    zh_texts = list(PARALLEL)
+    md.append("| Токенайзер | " + " | ".join(f"{t} ({len(PARALLEL[t]['zh'])})" for t in zh_texts) + " | Среднее | zh/en |")
+    md.append("|---|" + "---:|" * (len(zh_texts) + 2))
+    for n in names:
+        per = [parallel[t][n]["zh"] / len(PARALLEL[t]["zh"]) for t in zh_texts]
+        md.append(
+            f"| {n} | " + " | ".join(f"{x:.2f}" for x in per)
+            + f" | {statistics.mean(per):.2f} | {ratio[n]['zh']:.2f}x |"
+        )
+    md.append("")
+
     md.append("## 4. Нейтральные тексты (число токенов / число символов)\n")
     md.append("| Токенайзер | " + " | ".join(f"{t} ({len(NEUTRAL[t])})" for t in NEUTRAL) + " |")
     md.append("|---|" + "---:|" * len(NEUTRAL))
